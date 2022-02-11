@@ -1,24 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, ButtonWrapper } from './FeedbackOptions.styled';
 
-function FeedbackOptions({
-  onLeaveFeedbackGood,
-  onLeaveFeedbackNeutral,
-  onLeaveFeedbackBad,
-}) {
+function FeedbackOptions({ options, onLeaveFeedback }) {
   return (
     <ButtonWrapper>
-      <Button type="button" onClick={onLeaveFeedbackGood}>
-        Good
-      </Button>
-      <Button type="button" onClick={onLeaveFeedbackNeutral}>
-        Neutral
-      </Button>
-      <Button type="button" onClick={onLeaveFeedbackBad}>
-        Bad
-      </Button>
+      {options.map(option => (
+        <Button
+          key={option}
+          type="button"
+          onClick={() => onLeaveFeedback(option)}
+        >
+          {option[0].toUpperCase() + option.substring(1).toLowerCase()}
+        </Button>
+      ))}
     </ButtonWrapper>
   );
 }
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.array.isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
 
 export default FeedbackOptions;

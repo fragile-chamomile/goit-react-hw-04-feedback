@@ -12,21 +12,9 @@ class Feedback extends React.Component {
     bad: 0,
   };
 
-  handleClickGood = () => {
+  handleClick = button => {
     this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
-  };
-
-  handleClickNeutral = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-  };
-
-  handleClickBad = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
+      [button]: prevState[button] + 1,
     }));
   };
 
@@ -48,9 +36,8 @@ class Feedback extends React.Component {
       <>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            onLeaveFeedbackGood={this.handleClickGood}
-            onLeaveFeedbackNeutral={this.handleClickNeutral}
-            onLeaveFeedbackBad={this.handleClickBad}
+            options={['good', 'neutral', 'bad']}
+            onLeaveFeedback={this.handleClick}
           />
         </Section>
 
@@ -73,9 +60,13 @@ class Feedback extends React.Component {
 }
 
 Feedback.propTypes = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
+  state: PropTypes.arrayOf(
+    PropTypes.shape({
+      good: PropTypes.number.isRequired,
+      neutral: PropTypes.number.isRequired,
+      bad: PropTypes.number.isRequired,
+    })
+  ),
 };
 
 export default Feedback;
