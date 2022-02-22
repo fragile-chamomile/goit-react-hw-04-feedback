@@ -13,26 +13,23 @@ function Feedback() {
   const handleClick = button => {
     switch (button) {
       case 'good':
-        return setGood(prevState => prevState + 1);
+        return setGood(good => good + 1);
 
       case 'neutral':
-        return setNeutral(prevState => prevState + 1);
+        return setNeutral(neutral => neutral + 1);
 
       case 'bad':
-        return setBad(prevState => prevState + 1);
+        return setBad(bad => bad + 1);
 
       default:
         return;
     }
   };
 
-  const countTotalFeedback = () => {
-    return good + neutral + bad;
-  };
+  const countTotalFeedback = () => good + neutral + bad;
 
-  const countPositiveFeedbackPercentage = () => {
-    return Number.parseInt((100 / (good + neutral + bad)) * good);
-  };
+  const countPositiveFeedbackPercentage = () =>
+    Number.parseInt((100 / (good + neutral + bad)) * good);
 
   return (
     <>
