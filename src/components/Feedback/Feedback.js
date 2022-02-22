@@ -13,13 +13,13 @@ function Feedback() {
   const handleClick = button => {
     switch (button) {
       case 'good':
-        return setGood(good => good + 1);
+        return setGood(prevState => prevState + 1);
 
       case 'neutral':
-        return setNeutral(neutral => neutral + 1);
+        return setNeutral(prevState => prevState + 1);
 
       case 'bad':
-        return setBad(bad => bad + 1);
+        return setBad(prevState => prevState + 1);
 
       default:
         return;
@@ -61,9 +61,11 @@ function Feedback() {
 }
 
 Feedback.propTypes = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
+  useState: PropTypes.shape({
+    good: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
+  }),
 };
 
 export default Feedback;
