@@ -57,12 +57,4 @@ function Feedback() {
   );
 }
 
-Feedback.propTypes = {
-  useState: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }),
-};
-
 export default Feedback;
